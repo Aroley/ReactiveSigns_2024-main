@@ -32,17 +32,17 @@ function setup() {
     createCanvas(600, 700);
     rectMode(CORNER)
     // Spikeys
-    spikey1 = new Spikey(width / 2, height / 2, 220);
-    spikey2 = new Spikey(width / 2, height / 2, 220);
-    spikey3 = new Spikey(width / 2, height / 2, 220);
-    spikey4 = new Spikey(width / 2, height / 2, 220);
-    spikey5 = new Spikey(width / 2, height / 2, 220);
-    spikey6 = new Spikey(width / 2, height / 2, 220);
+    spikey1 = new Spikey(width / 2, height / 2, 300);
+    spikey2 = new Spikey(width / 2, height / 2, 300);
+    spikey3 = new Spikey(width / 2, height / 2, 300);
+    spikey4 = new Spikey(width / 2, height / 2, 300);
+    spikey5 = new Spikey(width / 2, height / 2, 300);
+    spikey6 = new Spikey(width / 2, height / 2, 300);
 
     // create grid
     for (let i = 0; i < gridX; i++) {
         for (let j = 0; j < gridY; j++) {
-            let showTile = false;
+            let showTile = true;
 
             let tile = new Tile(i * tileSize, j * tileSize, 100, showTile, i * gridY + j);
             tileArray.push(tile);
@@ -144,6 +144,16 @@ function showTemplate(template) {
             spikey6.x = tileArray[41].x + tileSize
             spikey6.y = tileArray[41].y + tileSize
 
+    
+    break;
+
+    default: 
+    spikey1.x = width/2
+    spikey1.y = height/2
+
+
+
+
     }
 
 
@@ -176,7 +186,7 @@ class Tile {
         rect(this.x, this.y, this.size, this.size);
         fill(0)
         textAlign(CENTER)
-        text(this.id, this.x + 50, this.y + 50)
+        //text(this.id, this.x + 50, this.y + 50)
     }
 }
 
@@ -189,7 +199,7 @@ class Spikey {
 
 
         // generate the lines once
-        // TODO: only show maybe 90 degres?
+        // TODO: stop lines after touching filled squares
         for (let angle = 0; angle <= 360; angle += 1) {
             let length = random(10, this.size);
             this.lines.push({ angle, length });
