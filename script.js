@@ -1,7 +1,6 @@
 /* Reminder to set spikey 1,3,5 to left and spikey 2,4,6 to right */
-
-let gridX = 6;
-let gridY = 7;
+let cols = 9;
+let rows = 16;
 let tileArray = [];
 let spikey1;
 let spikey2;
@@ -29,7 +28,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(600, 700);
+    createCanvas(cols * 100, rows * 100);
     rectMode(CORNER)
     // Spikeys
     spikey1 = new Spikey(width / 2, height / 2, 300);
@@ -40,25 +39,21 @@ function setup() {
     spikey6 = new Spikey(width / 2, height / 2, 300);
 
     // create grid
-    for (let i = 0; i < gridX; i++) {
-        for (let j = 0; j < gridY; j++) {
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
             let showTile = true;
 
-            let tile = new Tile(i * tileSize, j * tileSize, 100, showTile, i * gridY + j);
+            let tile = new Tile(col * tileSize, row * tileSize, 100, showTile, row * cols + col);
             tileArray.push(tile);
         }
     }
     // set up numbers
-    zero = [true, true, true, true, true, true,
-        true, true, false, false, false, false,
-        false, true, true, false, false, false,
-        false, false, true, true, false, false,
-        false, false, false, true, true, false,
-        false, false, false, false, true, true,
-        true, true, true, true, true, true]
+    zero = [
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, false, false, false, true, true, true, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, true, true, true, false, false, false, false, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+    ]
     numbers.push(zero)
-
-    one = [false, false, false, false, false, false,
+    one = [
+        false, false, false, false, false, false,
         false, false, false, false, false, false,
         false, false, true, false, false, false,
         false, false, false, true, true, true,
@@ -67,7 +62,8 @@ function setup() {
         false, false, false, false, false, false]
     numbers.push(one)
 
-    two = [true, false, false, true, true, true,
+    two = [
+        true, false, false, true, true, true,
         true, true, false, false, true, false,
         false, true, true, false, false, true,
         false, false, true, true, false, false,
@@ -76,13 +72,25 @@ function setup() {
         true, true, true, false, false, true]
     numbers.push(two)
 
-    three = [true, false, false, true, false, false,
+    three = [
+        true, false, false, true, false, false,
         true, true, false, false, true, false,
         false, true, true, false, false, true,
         false, false, true, true, false, false,
         true, false, false, true, true, false,
         false, true, false, false, true, true,
         true, true, true, true, true, true]
+    numbers.push(three)
+
+    three = [
+        true, true, false, false, true, false,
+        true, true, true, true, true, true,
+        false, false, true, false, false, true,
+        false, false, true, true, false, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, false,
+        false, false, false, false, false, false
+    ]
     numbers.push(three)
 
     /* eight = [true, true, true, true, true, true,
@@ -98,9 +106,17 @@ function setup() {
 }
 
 function draw() {
-    background(255);
+
+    if (mouseX > width / 2) {
+        background(0);
+
+    } else {
+        background(255);
+
+    }
+
     // choose number grid to display
-    showTemplate(numbers[3])
+    showTemplate(numbers[0])
 
 
     spikey1.display();
@@ -112,10 +128,10 @@ function draw() {
 
 
     // draw grid
-    for (let i = 0; i < gridX; i++) {
-        for (let j = 0; j < gridY; j++) {
-            let index = i * gridY + j;
-
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            let index = row * cols + col;
+            console.log(tileArray[index])
             tileArray[index].display();
         }
     }
@@ -132,23 +148,23 @@ function showTemplate(template) {
     switch (template) {
         case zero:
 
-            spikey1.x = tileArray[0].x
-            spikey1.y = tileArray[0].y
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
 
-            spikey2.x = tileArray[35].x + tileSize
-            spikey2.y = tileArray[35].y
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
 
-            spikey3.x = -width
-            spikey3.y = tileArray[3].y
+            spikey3.x = -width * 2
+            spikey3.y = tileArray[56].y + tileSize
 
             spikey4.x = +width * 2
-            spikey4.y = tileArray[38].y + tileSize
+            spikey4.y = tileArray[56].y + tileSize
 
-            spikey5.x = tileArray[6].x
-            spikey5.y = tileArray[6].y + tileSize
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
 
-            spikey6.x = tileArray[41].x + tileSize
-            spikey6.y = tileArray[41].y + tileSize
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
             break;
 
         case one:
@@ -233,20 +249,22 @@ class Tile {
     display() {
         noStroke()
         if (this.show) {
-            // Debug aid
-             noFill();
-            //stroke(0); 
-            
+            noFill();
+
         } else {
             // Debug aid
-            fill(255)
+            if (mouseX > width / 2) {
+                fill(0)
+            } else {
+                fill(255)
+            }
             //fill(200, 20, 20);
             //stroke(0); 
         }
         rect(this.x, this.y, this.size, this.size);
         fill(0)
         textAlign(CENTER)
-        //text(this.id, this.x + 50, this.y + 50)
+        text(this.id, this.x + 50, this.y + 50)
     }
 }
 
@@ -269,9 +287,15 @@ class Spikey {
 
     display() {
         //mousePos = map(mouseX, 0, width, 0.005, 0.06)
-        fill(0);
-        stroke(0);
-        
+        if (mouseX > width / 2) {
+            fill(255);
+            stroke(255);
+        } else {
+            fill(0);
+            stroke(0);
+        }
+
+
 
         // apply lines to Spikey
         for (let l of this.lines) {
@@ -281,6 +305,8 @@ class Spikey {
             translate(this.x, this.y);
             rotate(radians(l.angle));
             let oscillatingLength = 0
+
+
             if (l.length > this.size * 0.7) {
                 oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.3, this.size + (mouseX * 2));
             } else {
