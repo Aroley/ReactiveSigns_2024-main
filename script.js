@@ -49,7 +49,16 @@ function setup() {
         }
     }
     // set up numbers
-     one = [false, false, false, false, false, false,
+    zero = [true, true, true, true, true, true,
+        true, true, false, false, false, false,
+        false, true, true, false, false, false,
+        false, false, true, true, false, false,
+        false, false, false, true, true, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, true]
+    numbers.push(zero)
+
+    one = [false, false, false, false, false, false,
         false, false, false, false, false, false,
         false, false, true, false, false, false,
         false, false, false, true, true, true,
@@ -58,7 +67,7 @@ function setup() {
         false, false, false, false, false, false]
     numbers.push(one)
 
-     two = [true, false, false, true, true, true,
+    two = [true, false, false, true, true, true,
         true, true, false, false, true, false,
         false, true, true, false, false, true,
         false, false, true, true, false, false,
@@ -67,13 +76,31 @@ function setup() {
         true, true, true, false, false, true]
     numbers.push(two)
 
+    three = [true, false, false, true, false, false,
+        true, true, false, false, true, false,
+        false, true, true, false, false, true,
+        false, false, true, true, false, false,
+        true, false, false, true, true, false,
+        false, true, false, false, true, true,
+        true, true, true, true, true, true]
+    numbers.push(three)
+
+    /* eight = [true, true, true, true, true, true,
+        true, true, false, false, true, false,
+        false, true, true, false, false, true,
+        false, false, true, true, false, false,
+        true, false, false, true, true, false,
+        false, true, false, false, true, true,
+        true, true, true, true, true, true]
+    numbers.push(eight) */
+
 
 }
 
 function draw() {
     background(255);
     // choose number grid to display
-    showTemplate(numbers[1])
+    showTemplate(numbers[3])
 
 
     spikey1.display();
@@ -103,12 +130,33 @@ function showTemplate(template) {
 
     // adjust the spikeys' position
     switch (template) {
+        case zero:
+
+            spikey1.x = tileArray[0].x
+            spikey1.y = tileArray[0].y
+
+            spikey2.x = tileArray[35].x + tileSize
+            spikey2.y = tileArray[35].y
+
+            spikey3.x = -width
+            spikey3.y = tileArray[3].y
+
+            spikey4.x = +width * 2
+            spikey4.y = tileArray[38].y + tileSize
+
+            spikey5.x = tileArray[6].x
+            spikey5.y = tileArray[6].y + tileSize
+
+            spikey6.x = tileArray[41].x + tileSize
+            spikey6.y = tileArray[41].y + tileSize
+            break;
+
         case one:
 
             spikey1.x = tileArray[14].x
             spikey1.y = tileArray[14].y
 
-            spikey2.x = tileArray[21].x+ tileSize
+            spikey2.x = tileArray[21].x + tileSize
             spikey2.y = tileArray[21].y
 
             spikey3.x = tileArray[34].x
@@ -122,7 +170,6 @@ function showTemplate(template) {
 
             spikey6.x = -width
             spikey6.y = tileArray[3].y
-
             break;
 
         case two:
@@ -143,20 +190,33 @@ function showTemplate(template) {
 
             spikey6.x = tileArray[41].x + tileSize
             spikey6.y = tileArray[41].y + tileSize
+            break;
 
-    
-    break;
+        case three:
+            spikey1.x = tileArray[0].x
+            spikey1.y = tileArray[0].y
 
-    default: 
-    spikey1.x = width/2
-    spikey1.y = height/2
+            spikey2.x = tileArray[35].x + tileSize
+            spikey2.y = tileArray[35].y
 
+            spikey3.x = tileArray[3].x
+            spikey3.y = tileArray[3].y + tileSize / 2
 
+            spikey4.x = tileArray[38].x + +width * 2
+            spikey4.y = tileArray[38].y + tileSize / 2
 
+            spikey5.x = tileArray[6].x
+            spikey5.y = tileArray[6].y + tileSize
+
+            spikey6.x = tileArray[41].x + tileSize
+            spikey6.y = tileArray[41].y + tileSize
+            break;
+
+        default:
+            spikey1.x = width / 2
+            spikey1.y = height / 2
 
     }
-
-
 
 }
 
@@ -174,14 +234,14 @@ class Tile {
         noStroke()
         if (this.show) {
             // Debug aid
-            /* noFill();
-            stroke(200, 20, 20); */
-            noFill()
+             noFill();
+            //stroke(0); 
+            
         } else {
             // Debug aid
             fill(255)
-            /* fill(200, 20, 20);
-            stroke(0); */
+            //fill(200, 20, 20);
+            //stroke(0); 
         }
         rect(this.x, this.y, this.size, this.size);
         fill(0)
@@ -208,21 +268,23 @@ class Spikey {
     }
 
     display() {
-        mousePos = map(mouseX, 0, width, 0.005, 0.06)
+        //mousePos = map(mouseX, 0, width, 0.005, 0.06)
         fill(0);
         stroke(0);
-        strokeWeight(0.6);
+        
 
         // apply lines to Spikey
         for (let l of this.lines) {
+            let oscillatingStroke = this.sinMovement(l.angle, frameCount * -0.02, 0, 1);
+            strokeWeight(oscillatingStroke);
             push();
             translate(this.x, this.y);
             rotate(radians(l.angle));
             let oscillatingLength = 0
             if (l.length > this.size * 0.7) {
-                oscillatingLength = this.sinMovement(l.angle, frameCount * mousePos, this.size * 0.45, this.size);
+                oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.3, this.size + (mouseX * 2));
             } else {
-                oscillatingLength = this.sinMovement(l.angle, frameCount * mousePos, this.size * 0.2, this.size * 0.7);
+                oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.15, this.size * 0.8 + (mouseX * 2));
             }
 
             line(0, 0, oscillatingLength, 0);
