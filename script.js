@@ -49,29 +49,22 @@ function setup() {
     }
     // set up numbers
     zero = [
-        false, false, false, false, false, false,
-        false, false, false, false, false, false,
-        false, false, false, false, false, false,
-        false, false, true, true, true, true, true,
-        false, false, false, false, true, true,
-        true, true, true, false, false, false,
-        false, true, true, false, true, true,
-        false, false, false, false, true, true,
-        false, true, true, false, false, false,
-        false, true, true, false, true, true,
-        false, false, false, false, true, true,
-        false, true, true, false, false, false,
-        false, true, true, false, true, true,
-        false, false, false, false, true, true,
-        false, true, true, false, false, false,
-        false, true, true, false, true, true, false,
-        false, false, false, true, true, false, true,
-        true, false, false, false, false, true, true,
-        true, true, true, false, false, false, false,
-        true, true, true, true, true, false, false,
-        false, false, false, false, false, false,
-        false, false, false, false, false, false,
-        false, false, false, false, false, false
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0, 
+        0, 0, 1, 1, 0, 1, 1, 0, 0, 
+        0, 0, 1, 1, 0, 1, 1, 0, 0, 
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0, 
+        0, 0, 1, 1, 1, 1, 1, 0, 0, 
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 
+        0, 0, 0, 0, 0, 0, 0, 0, 0
     ]
     numbers.push(zero)
     one = [
@@ -131,9 +124,12 @@ function setup() {
     ]
     numbers.push(nine)
 
-
+    showTemplate(numbers[0]);
 }
 
+let count = 0;
+let no = 0;
+let oldNo = 0;
 function draw() {
 
     if (mouseX > width / 2) {
@@ -143,9 +139,21 @@ function draw() {
         background(255);
 
     }
+    count++
+    if (count >400 ) {
+        no++;
+        count = 0
+        if (no>9) {
+        no = 0 
+        }
+    }
+
 
     // choose number grid to display
-    showTemplate(numbers[0])
+    if (no != oldNo) {
+     showTemplate(numbers[no])
+     oldNo = no;
+    }
 
 
     spikey1.display();
@@ -168,6 +176,7 @@ function draw() {
 }
 
 function showTemplate(template) {
+
     for (let i = 0; i < tileArray.length; i++) {
         // get true or false value from the digit template and apply to Tiles
         tileArray[i].show = template[i]
@@ -177,17 +186,29 @@ function showTemplate(template) {
     switch (template) {
         case zero:
 
-            spikey1.x = tileArray[20].x
-            spikey1.y = tileArray[20].y
+        spikey1.show = true;
+        spikey2.show = true;
+        spikey3.show = false;
+        spikey4.show = false;
+        spikey5.show = true;
+        spikey6.show = true;
+
+        spikey1.x = tileArray[20].x
+        spikey1.y = tileArray[20].y
+
+            //spikey1.setTarget(tileArray[20].x,tileArray[20].y)
 
             spikey2.x = tileArray[24].x + tileSize
             spikey2.y = tileArray[24].y
 
+       
+            /*
             spikey3.x = -width * 2
             spikey3.y = tileArray[56].y + tileSize
 
             spikey4.x = +width * 2
             spikey4.y = tileArray[56].y + tileSize
+*/
 
             spikey5.x = tileArray[119].x
             spikey5.y = tileArray[119].y + tileSize
@@ -197,9 +218,17 @@ function showTemplate(template) {
             break;
 
         case one:
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = true;
+            spikey5.show = true;
+            spikey6.show = true;
 
             spikey1.x = tileArray[12].x
             spikey1.y = tileArray[12].y
+
+          //  spikey1.setTarget(tileArray[12].x,tileArray[12].y)
 
             spikey2.x = tileArray[15].x + tileSize
             spikey2.y = tileArray[15].y
@@ -378,8 +407,8 @@ function showTemplate(template) {
             break;
 
         default:
-            spikey1.x = width / 2
-            spikey1.y = height / 2
+          //  spikey1.x = width / 2
+         //   spikey1.y = height / 2
 
     }
 
@@ -421,49 +450,79 @@ class Spikey {
     constructor(x, y, size) {
         this.x = x;
         this.y = y;
+        this.oldX = x;
+        this.oldY = y;
+        
+
         this.size = size;
         this.lines = [];
+        this.show = true;
 
 
         // generate the lines once
         // TODO: stop lines after touching filled squares
         for (let angle = 0; angle <= 360; angle += 1) {
-            let length = random(10, this.size);
+            let length = random(120, this.size);
             this.lines.push({ angle, length });
 
         }
     }
 
-    display() {
-        //mousePos = map(mouseX, 0, width, 0.005, 0.06)
-        if (mouseX > width / 2) {
-            fill(255);
-            stroke(255);
+  
+    updatePosition() {
+    
+     let distX = (this.x-this.oldX)
+            if (abs(distX)>=0.1) {
+            distX *= 0.01;
+            this.oldX += distX; 
         } else {
-            fill(0);
-            stroke(0);
+            this.oldX = this.x;
+        }
+            let distY = (this.y-this.oldY)
+            if (abs(distY)>=0.1) {
+            distY *= 0.01;
+            this.oldY += distY;
+        } else {
+            this.oldY = this.y;
         }
 
+  //  this.oldX = this.x;
+ //   this.oldY = this.y;
+    }
 
-
-        // apply lines to Spikey
-        for (let l of this.lines) {
-            let oscillatingStroke = this.sinMovement(l.angle, frameCount * -0.02, 0, 1);
-            strokeWeight(oscillatingStroke);
-            push();
-            translate(this.x, this.y);
-            rotate(radians(l.angle));
-            let oscillatingLength = 0
-
-
-            if (l.length > this.size * 0.7) {
-                oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.3, this.size + (mouseX * 2));
+    display() {
+        this.updatePosition() 
+        if(this.show) {
+            //mousePos = map(mouseX, 0, width, 0.005, 0.06)
+            if (mouseX > width / 2) {
+                fill(255);
+                stroke(255);
             } else {
-                oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.15, this.size * 0.8 + (mouseX * 2));
+                fill(0);
+                stroke(0);
             }
 
-            line(0, 0, oscillatingLength, 0);
-            pop();
+
+
+            // apply lines to Spikey
+            for (let l of this.lines) {
+                let oscillatingStroke = this.sinMovement(l.angle, frameCount * -0.02, 0, 1);
+                strokeWeight(oscillatingStroke);
+                push();
+                translate(this.oldX, this.oldY);
+                rotate(radians(l.angle));
+                let oscillatingLength = 0
+
+
+                if (l.length > this.size * 0.7) {
+                    oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.3, this.size + (mouseX * 2));
+                } else {
+                    oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.5, this.size * 1 + (mouseX * 2));
+                }
+
+                line(0, 0, oscillatingLength, 0);
+                pop();
+            }
         }
     }
 
