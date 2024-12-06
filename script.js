@@ -49,17 +49,50 @@ function setup() {
     }
     // set up numbers
     zero = [
-        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, false, false, false, false, true, true, true, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, false, true, true, false, false, false, false, true, true, true, true, true, false, false, false, false, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+        false, false, false, false, false, false,
+        false, false, false, false, false, false,
+        false, false, false, false, false, false,
+        false, false, true, true, true, true, true,
+        false, false, false, false, true, true,
+        true, true, true, false, false, false,
+        false, true, true, false, true, true,
+        false, false, false, false, true, true,
+        false, true, true, false, false, false,
+        false, true, true, false, true, true,
+        false, false, false, false, true, true,
+        false, true, true, false, false, false,
+        false, true, true, false, true, true,
+        false, false, false, false, true, true,
+        false, true, true, false, false, false,
+        false, true, true, false, true, true, false,
+        false, false, false, true, true, false, true,
+        true, false, false, false, false, true, true,
+        true, true, true, false, false, false, false,
+        true, true, true, true, true, false, false,
+        false, false, false, false, false, false,
+        false, false, false, false, false, false,
+        false, false, false, false, false, false
     ]
     numbers.push(zero)
     one = [
-        false, false, false, false, false, false,
-        false, false, false, false, false, false,
-        false, false, true, false, false, false,
-        false, false, false, true, true, true,
-        true, true, true, true, false, false,
-        false, false, false, false, false, false,
-        false, false, false, false, false, false]
+        false,false,false,false,false,false,false,
+        false,false,false,false,false,true,true,true,
+        true,false,false,false,false,false,true,true,
+        true,true,false,false,false,false,false,false,
+        false,true,true,false,false,false,false,false,
+        false,false,true,true,false,false,false,false,
+        false,false,false,true,true,false,false,false,
+        false,false,false,false,true,true,false,false,
+        false,false,false,false,false,true,true,false,
+        false,false,false,false,false,false,true,true,
+        false,false,false,false,false,false,false,true,
+        true,false,false,false,false,false,false,false,
+        true,true,false,false,false,false,false,false,
+        false,true,true,false,false,false,false,false,
+        false,false,true,true,false,false,false,false,
+        false,false,false,true,true,false,false,false,
+        false,false,false,false,false,false,false,false,
+        false,false,false,false,false,false,false,false,false]
     numbers.push(one)
 
     two = [
@@ -84,7 +117,7 @@ function setup() {
 
     three = [
         true, true, false, false, true, false,
-        true, true, true, true, true, true,
+        true, true, true, true, true, true, 
         false, false, true, false, false, true,
         false, false, true, true, false, false,
         false, false, false, false, true, true,
@@ -92,6 +125,50 @@ function setup() {
         false, false, false, false, false, false
     ]
     numbers.push(three)
+
+    four = [
+        true, true, false, false, true, false,
+        true, true, true, true, true, true, 
+        false, false, true, false, false, true,
+        false, false, true, true, false, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, false,
+        false, false, false, false, false, false
+    ]
+    numbers.push(four)
+
+    five = [
+        true, true, false, false, true, false,
+        true, true, true, true, true, true, 
+        false, false, true, false, false, true,
+        false, false, true, true, false, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, false,
+        false, false, false, false, false, false
+    ]
+    numbers.push(five)
+
+    six = [
+        true, true, false, false, true, false,
+        true, true, true, true, true, true, 
+        false, false, true, false, false, true,
+        false, false, true, true, false, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, false,
+        false, false, false, false, false, false
+    ]
+    numbers.push(six)
+
+    seven = [
+        true, true, false, false, true, false,
+        true, true, true, true, true, true, 
+        false, false, true, false, false, true,
+        false, false, true, true, false, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, false,
+        false, false, false, false, false, false
+    ]
+    numbers.push(seven)
 
     /* eight = [true, true, true, true, true, true,
         true, true, false, false, true, false,
@@ -101,6 +178,17 @@ function setup() {
         false, true, false, false, true, true,
         true, true, true, true, true, true]
     numbers.push(eight) */
+
+    nine = [
+        true, true, false, false, true, false,
+        true, true, true, true, true, true, 
+        false, false, true, false, false, true,
+        false, false, true, true, false, false,
+        false, false, false, false, true, true,
+        true, true, true, true, true, false,
+        false, false, false, false, false, false
+    ]
+    numbers.push(nine)
 
 
 }
@@ -116,7 +204,7 @@ function draw() {
     }
 
     // choose number grid to display
-    showTemplate(numbers[0])
+    showTemplate(numbers[1])
 
 
     spikey1.display();
