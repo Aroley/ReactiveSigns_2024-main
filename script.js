@@ -120,8 +120,7 @@ function setup() {
     numbers.push(six)
 
     seven = [
-        false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,true,true,true,true,true,false,false,false,false,true,true,true,true,true,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
-    ]
+        false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,true,true,true,true,false,false,false,false,false,true,true,true,true,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
     numbers.push(seven)
 
     eight = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,false,false,false,false,true,true,true,true,true,false,false,false,false,true,true,false,true,true,false,false,false,false,true,true,false,true,true,false,false,false,false,true,true,false,true,true,false,false,false,false,true,true,true,true,true,false,false,false,false,true,true,true,true,true,false,false,false,false,true,true,false,true,true,false,false,false,false,true,true,false,true,true,false,false,false,false,true,true,false,true,true,false,false,false,false,true,true,true,true,true,false,false,false,false,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -146,7 +145,7 @@ function draw() {
     }
 
     // choose number grid to display
-    showTemplate(numbers[2])
+    showTemplate(numbers[0])
 
 
     spikey1.display();
@@ -199,14 +198,14 @@ function showTemplate(template) {
 
         case one:
 
-            spikey1.x = tileArray[14].x
-            spikey1.y = tileArray[14].y
+            spikey1.x = tileArray[12].x
+            spikey1.y = tileArray[12].y
 
-            spikey2.x = tileArray[21].x + tileSize
-            spikey2.y = tileArray[21].y
+            spikey2.x = tileArray[15].x + tileSize
+            spikey2.y = tileArray[15].y
 
-            spikey3.x = tileArray[34].x
-            spikey3.y = tileArray[34].y + tileSize
+            spikey3.x = tileArray[124].x
+            spikey3.y = tileArray[124].y + tileSize
 
             spikey4.x = -width
             spikey4.y = tileArray[3].y
@@ -219,43 +218,163 @@ function showTemplate(template) {
             break;
 
         case two:
-            spikey1.x = tileArray[0].x
-            spikey1.y = tileArray[0].y
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
 
-            spikey2.x = tileArray[35].x + tileSize
-            spikey2.y = tileArray[35].y
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
 
-            spikey3.x = tileArray[3].x
-            spikey3.y = tileArray[3].y
+            spikey3.x = tileArray[65].x
+            spikey3.y = tileArray[65].y
 
-            spikey4.x = tileArray[38].x + tileSize
-            spikey4.y = tileArray[38].y + tileSize
+            spikey4.x = tileArray[78].x + tileSize
+            spikey4.y = tileArray[78].y + tileSize
 
-            spikey5.x = tileArray[6].x
-            spikey5.y = tileArray[6].y + tileSize
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
 
-            spikey6.x = tileArray[41].x + tileSize
-            spikey6.y = tileArray[41].y + tileSize
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
             break;
 
         case three:
-            spikey1.x = tileArray[0].x
-            spikey1.y = tileArray[0].y
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
 
-            spikey2.x = tileArray[35].x + tileSize
-            spikey2.y = tileArray[35].y
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
 
-            spikey3.x = tileArray[3].x
-            spikey3.y = tileArray[3].y + tileSize / 2
+            spikey3.x = tileArray[74].x
+            spikey3.y = tileArray[74].y 
 
-            spikey4.x = tileArray[38].x + +width * 2
-            spikey4.y = tileArray[38].y + tileSize / 2
+            spikey4.x = width * 2
+            spikey4.y = tileArray[74].y + tileSize
 
-            spikey5.x = tileArray[6].x
-            spikey5.y = tileArray[6].y + tileSize
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
 
-            spikey6.x = tileArray[41].x + tileSize
-            spikey6.y = tileArray[41].y + tileSize
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
+            break;
+
+            case four:
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
+
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
+
+            spikey3.x = tileArray[74].x
+            spikey3.y = tileArray[74].y + tileSize
+
+            spikey4.x = width * 2
+            spikey4.y = tileArray[74].y + tileSize
+
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
+
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
+            break;
+
+            case five:
+                spikey1.x = tileArray[20].x
+                spikey1.y = tileArray[20].y
+    
+                spikey2.x = tileArray[24].x + tileSize
+                spikey2.y = tileArray[24].y
+    
+                spikey3.x = tileArray[74].x
+                spikey3.y = tileArray[74].y + tileSize
+    
+                spikey4.x = tileArray[69].x + tileSize
+                spikey4.y = tileArray[69].y 
+    
+                spikey5.x = tileArray[119].x
+                spikey5.y = tileArray[119].y + tileSize
+    
+                spikey6.x = tileArray[123].x + tileSize
+                spikey6.y = tileArray[123].y + tileSize
+            break;
+
+            case six:
+                spikey1.x = tileArray[20].x
+                spikey1.y = tileArray[20].y
+    
+                spikey2.x = tileArray[24].x + tileSize
+                spikey2.y = tileArray[24].y
+    
+                spikey3.x = -width * 2
+                spikey3.y = tileArray[74].y + tileSize
+    
+                spikey4.x = tileArray[69].x + tileSize
+                spikey4.y = tileArray[69].y 
+    
+                spikey5.x = tileArray[119].x
+                spikey5.y = tileArray[119].y + tileSize
+    
+                spikey6.x = tileArray[123].x + tileSize
+                spikey6.y = tileArray[123].y + tileSize
+            break;
+
+            case seven:
+                spikey1.x = tileArray[20].x
+                spikey1.y = tileArray[20].y
+    
+                spikey2.x = tileArray[23].x + tileSize
+                spikey2.y = tileArray[23].y
+    
+                spikey3.x = tileArray[66].x
+                spikey3.y = tileArray[66].y + tileSize
+    
+                spikey4.x = tileArray[69].x + tileSize
+                spikey4.y = tileArray[69].y + tileSize
+    
+                spikey5.x = -width * 2
+                spikey5.y = tileArray[121].y + tileSize
+    
+                spikey6.x = tileArray[122].x + tileSize
+                spikey6.y = tileArray[122].y + tileSize
+            break;
+
+            case eight:
+                spikey1.x = tileArray[20].x
+                spikey1.y = tileArray[20].y
+    
+                spikey2.x = tileArray[24].x + tileSize
+                spikey2.y = tileArray[24].y
+    
+                spikey3.x = tileArray[74].x
+                spikey3.y = tileArray[74].y 
+    
+                spikey4.x = tileArray[70].y 
+                spikey4.y = tileArray[70].y + tileSize
+    
+                spikey5.x = tileArray[119].x
+                spikey5.y = tileArray[119].y + tileSize
+    
+                spikey6.x = tileArray[123].x + tileSize
+                spikey6.y = tileArray[123].y + tileSize
+                break;
+
+                case nine:
+                spikey1.x = tileArray[20].x
+                spikey1.y = tileArray[20].y
+    
+                spikey2.x = tileArray[24].x + tileSize
+                spikey2.y = tileArray[24].y
+    
+                spikey3.x = tileArray[74].x
+                spikey3.y = tileArray[74].y + tileSize
+    
+                spikey4.x = width * 2
+                spikey4.y = tileArray[74].y + tileSize
+    
+                spikey5.x = tileArray[119].x
+                spikey5.y = tileArray[119].y + tileSize
+    
+                spikey6.x = tileArray[123].x + tileSize
+                spikey6.y = tileArray[123].y + tileSize
             break;
 
         default:
@@ -294,7 +413,7 @@ class Tile {
         rect(this.x, this.y, this.size, this.size);
         fill(0)
         textAlign(CENTER)
-        text(this.id, this.x + 50, this.y + 50)
+       // text(this.id, this.x + 50, this.y + 50)
     }
 }
 
