@@ -263,7 +263,7 @@ function draw() {
 
     }
     count++
-    if (count >400 ) {
+    if (count >1000 ) {
         no++;
         count = 0
         if (no>9) {
