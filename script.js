@@ -621,7 +621,7 @@ class Tile {
         rect(this.x, this.y, this.size, this.size);
         fill(0)
         textAlign(CENTER)
-        text(this.id, this.x + 50, this.y + 50)
+        // text(this.id, this.x + 50, this.y + 50)
     }
 }
 
@@ -650,14 +650,14 @@ class Spikey {
     // Move the Spikey to the new position  
     updatePosition() {
         let distX = (this.x - this.oldX)
-        if (abs(distX) >= 0.1) {
+        if (abs(distX) >= 0.01) {
             distX *= 0.02;
             this.oldX += distX;
         } else {
             this.oldX = this.x;
         }
         let distY = (this.y - this.oldY)
-        if (abs(distY) >= 0.1) {
+        if (abs(distY) >= 0.01) {
             distY *= 0.02;
             this.oldY += distY;
         } else {
