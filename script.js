@@ -55,15 +55,15 @@ function setup() {
         0, 0, 1, 1, 1, 1, 1, 0, 0,
         0, 0, 1, 1, 0, 1, 1, 0, 0,
         0, 0, 1, 1, 0, 1, 1, 0, 0,
-        0, 0, 1, 1, 0, 1, 1, 0, 0, 
-        0, 0, 1, 1, 0, 1, 1, 0, 0, 
-        0, 0, 1, 1, 0, 1, 1, 0, 0, 
         0, 0, 1, 1, 0, 1, 1, 0, 0,
         0, 0, 1, 1, 0, 1, 1, 0, 0,
-        0, 0, 1, 1, 0, 1, 1, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 1, 1, 0, 0,
         0, 0, 1, 1, 1, 1, 1, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0
     ]
     numbers.push(zero)
@@ -88,23 +88,23 @@ function setup() {
     numbers.push(one)
 
     two = [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
-        0, 0, 0, 0, 0, 1, 1, 0, 0, 
-        0, 0, 0, 0, 0, 1, 1, 0, 0, 
-        0, 0, 0, 0, 0, 1, 1, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
-        0, 0, 1, 1, 0, 0, 0, 0, 0, 
-        0, 0, 1, 1, 0, 0, 0, 0, 0, 
-        0, 0, 1, 1, 0, 0, 0, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
-        0, 0, 1, 1, 1, 1, 1, 0, 0, 
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 
-        0, 0, 0, 0, 0, 0, 0, 0, 0 
-]
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 1, 1, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 1, 1, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 0, 0, 0, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 1, 1, 1, 1, 1, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0
+    ]
     numbers.push(two)
 
     three = [
@@ -147,7 +147,7 @@ function setup() {
     ]
     numbers.push(four)
 
-    five= [
+    five = [
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 1, 1, 1, 1, 1, 0, 0,
@@ -245,14 +245,14 @@ function setup() {
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0
     ]
-    numbers.push(nine) 
+    numbers.push(nine)
 
     showTemplate(numbers[0]);
 }
 
-let count = 0;
-let no = 0;
-let oldNo = 0;
+let switchCount = 0;
+let currentGridNumber = 0;
+let oldGridNumber = 0;
 function draw() {
 
     if (mouseX > width / 2) {
@@ -262,20 +262,20 @@ function draw() {
         background(255);
 
     }
-    count++
-    if (count >1000 ) {
-        no++;
-        count = 0
-        if (no>9) {
-        no = 0 
+    switchCount++
+    if (switchCount > 300) {
+        currentGridNumber++;
+        switchCount = 0
+        if (currentGridNumber > 9) {
+            currentGridNumber = 0
         }
     }
 
 
     // choose number grid to display
-    if (no != oldNo) {
-     showTemplate(numbers[no])
-     oldNo = no;
+    if (currentGridNumber != oldGridNumber) {
+        showTemplate(numbers[currentGridNumber])
+        oldGridNumber = currentGridNumber;
     }
 
 
@@ -291,7 +291,7 @@ function draw() {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             let index = row * cols + col;
-            console.log(tileArray[index])
+            // console.log(tileArray[index])
             tileArray[index].display();
         }
     }
@@ -309,29 +309,24 @@ function showTemplate(template) {
     switch (template) {
         case zero:
 
-        spikey1.show = true;
-        spikey2.show = true;
-        spikey3.show = false;
-        spikey4.show = false;
-        spikey5.show = true;
-        spikey6.show = true;
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = false;
+            spikey4.show = false;
+            spikey5.show = true;
+            spikey6.show = true;
 
-        spikey1.x = tileArray[20].x
-        spikey1.y = tileArray[20].y
-
-            //spikey1.setTarget(tileArray[20].x,tileArray[20].y)
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
 
             spikey2.x = tileArray[24].x + tileSize
             spikey2.y = tileArray[24].y
 
-       
-            /*
-            spikey3.x = -width * 2
+            spikey3.x = -width
             spikey3.y = tileArray[56].y + tileSize
 
             spikey4.x = +width * 2
             spikey4.y = tileArray[56].y + tileSize
-*/
 
             spikey5.x = tileArray[119].x
             spikey5.y = tileArray[119].y + tileSize
@@ -343,33 +338,38 @@ function showTemplate(template) {
         case one:
             spikey1.show = true;
             spikey2.show = true;
+            spikey3.show = false;
+            spikey4.show = false;
+            spikey5.show = false;
+            spikey6.show = true;
+
+            spikey1.x = tileArray[12].x
+            spikey1.y = tileArray[12].y + tileSize
+
+            spikey2.x = tileArray[15].x + tileSize
+            spikey2.y = tileArray[15].y + tileSize
+
+            spikey3.x = tileArray[63].x - width
+            spikey3.y = tileArray[63].y
+
+            spikey4.x = tileArray[71].x + width
+            spikey4.y = tileArray[71].y
+
+            spikey5.x = tileArray[118].x - width
+            spikey5.y = tileArray[118].y
+
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
+            break;
+
+        case two:
+            spikey1.show = true;
+            spikey2.show = true;
             spikey3.show = true;
             spikey4.show = true;
             spikey5.show = true;
             spikey6.show = true;
 
-            spikey1.x = tileArray[12].x
-            spikey1.y = tileArray[12].y
-
-          //  spikey1.setTarget(tileArray[12].x,tileArray[12].y)
-
-            spikey2.x = tileArray[15].x + tileSize
-            spikey2.y = tileArray[15].y
-
-            spikey3.x = tileArray[124].x
-            spikey3.y = tileArray[124].y + tileSize
-
-            spikey4.x = -width
-            spikey4.y = tileArray[3].y
-
-            spikey5.x = -width
-            spikey5.y = tileArray[3].y
-
-            spikey6.x = -width
-            spikey6.y = tileArray[3].y
-            break;
-
-        case two:
             spikey1.x = tileArray[20].x
             spikey1.y = tileArray[20].y
 
@@ -390,6 +390,14 @@ function showTemplate(template) {
             break;
 
         case three:
+
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = false;
+            spikey5.show = true;
+            spikey6.show = true;
+
             spikey1.x = tileArray[20].x
             spikey1.y = tileArray[20].y
 
@@ -397,7 +405,7 @@ function showTemplate(template) {
             spikey2.y = tileArray[24].y
 
             spikey3.x = tileArray[74].x
-            spikey3.y = tileArray[74].y 
+            spikey3.y = tileArray[74].y
 
             spikey4.x = width * 2
             spikey4.y = tileArray[74].y + tileSize
@@ -409,7 +417,15 @@ function showTemplate(template) {
             spikey6.y = tileArray[123].y + tileSize
             break;
 
-            case four:
+        case four:
+
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = false;
+            spikey5.show = false;
+            spikey6.show = true;
+
             spikey1.x = tileArray[20].x
             spikey1.y = tileArray[20].y
 
@@ -429,109 +445,149 @@ function showTemplate(template) {
             spikey6.y = tileArray[123].y + tileSize
             break;
 
-            case five:
-                spikey1.x = tileArray[20].x
-                spikey1.y = tileArray[20].y
-    
-                spikey2.x = tileArray[24].x + tileSize
-                spikey2.y = tileArray[24].y
-    
-                spikey3.x = tileArray[74].x
-                spikey3.y = tileArray[74].y + tileSize
-    
-                spikey4.x = tileArray[69].x + tileSize
-                spikey4.y = tileArray[69].y 
-    
-                spikey5.x = tileArray[119].x
-                spikey5.y = tileArray[119].y + tileSize
-    
-                spikey6.x = tileArray[123].x + tileSize
-                spikey6.y = tileArray[123].y + tileSize
+        case five:
+
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = true;
+            spikey5.show = true;
+            spikey6.show = true;
+
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
+
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
+
+            spikey3.x = tileArray[74].x
+            spikey3.y = tileArray[74].y + tileSize
+
+            spikey4.x = tileArray[69].x + tileSize
+            spikey4.y = tileArray[69].y
+
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
+
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
             break;
 
-            case six:
-                spikey1.x = tileArray[20].x
-                spikey1.y = tileArray[20].y
-    
-                spikey2.x = tileArray[24].x + tileSize
-                spikey2.y = tileArray[24].y
-    
-                spikey3.x = -width * 2
-                spikey3.y = tileArray[74].y + tileSize
-    
-                spikey4.x = tileArray[69].x + tileSize
-                spikey4.y = tileArray[69].y 
-    
-                spikey5.x = tileArray[119].x
-                spikey5.y = tileArray[119].y + tileSize
-    
-                spikey6.x = tileArray[123].x + tileSize
-                spikey6.y = tileArray[123].y + tileSize
+        case six:
+
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = false;
+            spikey4.show = true;
+            spikey5.show = true;
+            spikey6.show = true;
+
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
+
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
+
+            spikey3.x = -width * 2
+            spikey3.y = tileArray[74].y + tileSize
+
+            spikey4.x = tileArray[69].x + tileSize
+            spikey4.y = tileArray[69].y
+
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
+
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
             break;
 
-            case seven:
-                spikey1.x = tileArray[20].x
-                spikey1.y = tileArray[20].y
-    
-                spikey2.x = tileArray[23].x + tileSize
-                spikey2.y = tileArray[23].y
-    
-                spikey3.x = tileArray[66].x
-                spikey3.y = tileArray[66].y + tileSize
-    
-                spikey4.x = tileArray[69].x + tileSize
-                spikey4.y = tileArray[69].y + tileSize
-    
-                spikey5.x = -width * 2
-                spikey5.y = tileArray[121].y + tileSize
-    
-                spikey6.x = tileArray[122].x + tileSize
-                spikey6.y = tileArray[122].y + tileSize
+        case seven:
+
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = true;
+            spikey5.show = false;
+            spikey6.show = true;
+
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
+
+            spikey2.x = tileArray[23].x + tileSize
+            spikey2.y = tileArray[23].y
+
+            spikey3.x = tileArray[66].x
+            spikey3.y = tileArray[66].y + tileSize
+
+            spikey4.x = tileArray[69].x + tileSize
+            spikey4.y = tileArray[69].y + tileSize
+
+            spikey5.x = -width * 2
+            spikey5.y = tileArray[121].y + tileSize
+
+            spikey6.x = tileArray[122].x + tileSize
+            spikey6.y = tileArray[122].y + tileSize
             break;
 
-            case eight:
-                spikey1.x = tileArray[20].x
-                spikey1.y = tileArray[20].y
-    
-                spikey2.x = tileArray[24].x + tileSize
-                spikey2.y = tileArray[24].y
-    
-                spikey3.x = tileArray[74].x
-                spikey3.y = tileArray[74].y 
-    
-                spikey4.x = tileArray[70].y 
-                spikey4.y = tileArray[70].y + tileSize
-    
-                spikey5.x = tileArray[119].x
-                spikey5.y = tileArray[119].y + tileSize
-    
-                spikey6.x = tileArray[123].x + tileSize
-                spikey6.y = tileArray[123].y + tileSize
-                break;
+        case eight:
 
-                case nine:
-                spikey1.x = tileArray[20].x
-                spikey1.y = tileArray[20].y
-    
-                spikey2.x = tileArray[24].x + tileSize
-                spikey2.y = tileArray[24].y
-    
-                spikey3.x = tileArray[74].x
-                spikey3.y = tileArray[74].y + tileSize
-    
-                spikey4.x = width * 2
-                spikey4.y = tileArray[74].y + tileSize
-    
-                spikey5.x = tileArray[119].x
-                spikey5.y = tileArray[119].y + tileSize
-    
-                spikey6.x = tileArray[123].x + tileSize
-                spikey6.y = tileArray[123].y + tileSize
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = true;
+            spikey5.show = true;
+            spikey6.show = true;
+
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
+
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
+
+            spikey3.x = tileArray[74].x
+            spikey3.y = tileArray[74].y
+
+            spikey4.x = tileArray[70].y
+            spikey4.y = tileArray[70].y + tileSize
+
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
+
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
+            break;
+
+        case nine:
+
+            spikey1.show = true;
+            spikey2.show = true;
+            spikey3.show = true;
+            spikey4.show = false;
+            spikey5.show = true;
+            spikey6.show = true;
+
+            spikey1.x = tileArray[20].x
+            spikey1.y = tileArray[20].y
+
+            spikey2.x = tileArray[24].x + tileSize
+            spikey2.y = tileArray[24].y
+
+            spikey3.x = tileArray[74].x
+            spikey3.y = tileArray[74].y + tileSize
+
+            spikey4.x = width * 2
+            spikey4.y = tileArray[74].y + tileSize
+
+            spikey5.x = tileArray[119].x
+            spikey5.y = tileArray[119].y + tileSize
+
+            spikey6.x = tileArray[123].x + tileSize
+            spikey6.y = tileArray[123].y + tileSize
             break;
 
         default:
-          //  spikey1.x = width / 2
-         //   spikey1.y = height / 2
+        //  spikey1.x = width / 2
+        //  spikey1.y = height / 2
 
     }
 
@@ -565,7 +621,7 @@ class Tile {
         rect(this.x, this.y, this.size, this.size);
         fill(0)
         textAlign(CENTER)
-       // text(this.id, this.x + 50, this.y + 50)
+        text(this.id, this.x + 50, this.y + 50)
     }
 }
 
@@ -575,7 +631,7 @@ class Spikey {
         this.y = y;
         this.oldX = x;
         this.oldY = y;
-        
+
 
         this.size = size;
         this.lines = [];
@@ -591,31 +647,30 @@ class Spikey {
         }
     }
 
-  
+    // Move the Spikey to the new position  
     updatePosition() {
-    
-     let distX = (this.x-this.oldX)
-            if (abs(distX)>=0.1) {
-            distX *= 0.01;
-            this.oldX += distX; 
+        let distX = (this.x - this.oldX)
+        if (abs(distX) >= 0.1) {
+            distX *= 0.02;
+            this.oldX += distX;
         } else {
             this.oldX = this.x;
         }
-            let distY = (this.y-this.oldY)
-            if (abs(distY)>=0.1) {
-            distY *= 0.01;
+        let distY = (this.y - this.oldY)
+        if (abs(distY) >= 0.1) {
+            distY *= 0.02;
             this.oldY += distY;
         } else {
             this.oldY = this.y;
         }
 
-  //  this.oldX = this.x;
- //   this.oldY = this.y;
+        //  this.oldX = this.x;
+        //   this.oldY = this.y;
     }
 
     display() {
-        this.updatePosition() 
-        if(this.show) {
+        this.updatePosition()
+        if (this.show) {
             //mousePos = map(mouseX, 0, width, 0.005, 0.06)
             if (mouseX > width / 2) {
                 fill(255);
