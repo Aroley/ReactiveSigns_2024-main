@@ -30,6 +30,8 @@ function preload() {
 function setup() {
     createCanvas(cols * 100, rows * 100);
     rectMode(CORNER)
+
+
     // Spikeys
     spikey1 = new Spikey(width / 2, height / 2, 300);
     spikey2 = new Spikey(width / 2, height / 2, 300);
@@ -253,15 +255,15 @@ function setup() {
 let switchCount = 0;
 let currentGridNumber = 0;
 let oldGridNumber = 0;
+
+
 function draw() {
 
-    if (mouseX > width / 2) {
-        background(0);
 
-    } else {
-        background(255);
+    // Map mouse position to color
+    mousePos = map(mouseX, 0, width, 0, 255)
+    background(abs(mousePos - 255))
 
-    }
     switchCount++
     if (switchCount > 300) {
         currentGridNumber++;
@@ -610,11 +612,7 @@ class Tile {
 
         } else {
             // Debug aid
-            if (mouseX > width / 2) {
-                fill(0)
-            } else {
-                fill(255)
-            }
+            fill(abs(mousePos - 255))
             //fill(200, 20, 20);
             //stroke(0); 
         }
@@ -671,16 +669,9 @@ class Spikey {
     display() {
         this.updatePosition()
         if (this.show) {
-            //mousePos = map(mouseX, 0, width, 0.005, 0.06)
-            if (mouseX > width / 2) {
-                fill(255);
-                stroke(255);
-            } else {
-                fill(0);
-                stroke(0);
-            }
 
-
+            fill(mousePos);
+            stroke(mousePos);
 
             // apply lines to Spikey
             for (let l of this.lines) {
@@ -693,9 +684,9 @@ class Spikey {
 
 
                 if (l.length > this.size * 0.7) {
-                    oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.3, this.size + (mouseX * 2));
+                    oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.3, this.size*2 + (mouseX * 2));
                 } else {
-                    oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.5, this.size * 1 + (mouseX * 2));
+                    oscillatingLength = this.sinMovement(l.angle, frameCount * 0.02, this.size * 0.5, this.size*2 + (mouseX * 2));
                 }
 
                 line(0, 0, oscillatingLength, 0);
